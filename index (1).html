@@ -1,0 +1,3082 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nile Coffee — Fresh Coffee, Fast</title>
+    <meta
+      name="description"
+      content="Responsive landing page for Nile Coffee featuring fresh artisan roasts, fast delivery, organic beans, and a warm cozy atmosphere."
+    />
+    <meta property="og:title" content="Nile Coffee — Fresh Coffee, Fast" />
+    <meta
+      property="og:description"
+      content="Responsive landing page for Nile Coffee featuring fresh artisan roasts, fast delivery, organic beans, and a warm cozy atmosphere."
+    />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <!-- Google Fonts: Fraunces & Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      /* ==========================================================================
+         Warm Palette & Design System
+         Browns: #26150f, #382015, #4d2d1d, #7c4a2d, #c07d3c
+         Creams: #fbf8f2, #f5eedf, #ede4d1, #ebdcc2
+         Dark Green: #162d22, #1e3d2e, #2a523e, #3d6f56
+         ========================================================================== */
+      :root {
+        --color-bg: #fbf8f2;
+        --color-surface: #f5eedf;
+        --color-surface-hover: #ede4d1;
+        --color-surface-card: #ffffff;
+        --color-surface-tint: #ebdcc2;
+        --color-border: rgba(77, 45, 29, 0.12);
+        --color-border-strong: rgba(77, 45, 29, 0.25);
+
+        --color-espresso: #26150f;
+        --color-roast-deep: #382015;
+        --color-roast-medium: #4d2d1d;
+        --color-roast-light: #7c4a2d;
+        --color-caramel: #c07d3c;
+        --color-caramel-hover: #a5672b;
+
+        --color-nile-deep: #162d22;
+        --color-nile-green: #1e3d2e;
+        --color-nile-medium: #2a523e;
+        --color-nile-light: #3d6f56;
+        --color-nile-mist: #e5ece8;
+
+        --color-text-main: #26150f;
+        --color-text-muted: #644a3e;
+        --color-text-subtle: #8a7063;
+
+        --font-serif: "Fraunces", Georgia, serif;
+        --font-sans: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+
+        --radius-sm: 8px;
+        --radius-md: 14px;
+        --radius-lg: 20px;
+        --radius-xl: 28px;
+        --radius-full: 9999px;
+
+        --shadow-subtle: 0 4px 18px rgba(38, 21, 15, 0.05);
+        --shadow-lift: 0 12px 32px rgba(38, 21, 15, 0.08);
+        --shadow-modal: 0 24px 60px rgba(22, 45, 34, 0.28);
+
+        --container-max: 1180px;
+        --transition: 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      html {
+        scroll-behavior: smooth;
+        text-size-adjust: 100%;
+        background-color: var(--color-bg);
+      }
+
+      body {
+        font-family: var(--font-sans);
+        color: var(--color-text-main);
+        background-color: var(--color-bg);
+        line-height: 1.6;
+        min-height: 100vh;
+        overflow-x: hidden;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+        transition: color var(--transition);
+      }
+
+      button {
+        font-family: inherit;
+        cursor: pointer;
+        border: none;
+        background: none;
+        outline: none;
+      }
+
+      img,
+      svg {
+        display: block;
+        max-width: 100%;
+      }
+
+      .container {
+        width: 100%;
+        max-width: var(--container-max);
+        margin-left: auto;
+        margin-right: auto;
+        padding-left: 24px;
+        padding-right: 24px;
+      }
+
+      :focus-visible {
+        outline: 2px solid var(--color-nile-green);
+        outline-offset: 3px;
+      }
+
+      /* ==========================================================================
+         Header & Navigation (3-Zone Contract with Cart & Mobile Hamburger)
+         ========================================================================== */
+      .site-header {
+        position: sticky;
+        top: 0;
+        z-index: 90;
+        background-color: rgba(251, 248, 242, 0.95);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border-bottom: 1px solid var(--color-border);
+        transition: background-color var(--transition), box-shadow var(--transition);
+      }
+
+      .site-header.scrolled {
+        box-shadow: 0 4px 18px rgba(38, 21, 15, 0.05);
+      }
+
+      .header-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 28px;
+        height: 76px;
+      }
+
+      /* Zone 1: Brand Wordmark */
+      .brand-logo {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        font-family: var(--font-serif);
+        font-size: 1.45rem;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        color: var(--color-espresso);
+        white-space: nowrap;
+        flex-shrink: 0;
+      }
+
+      .brand-icon {
+        width: 34px;
+        height: 34px;
+        color: var(--color-nile-green);
+        background-color: var(--color-nile-mist);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+      }
+
+      .brand-icon svg {
+        width: 20px;
+        height: 20px;
+      }
+
+      /* Zone 2: Navigation Links */
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 32px;
+        list-style: none;
+      }
+
+      .nav-link {
+        font-size: 0.95rem;
+        font-weight: 500;
+        color: var(--color-text-muted);
+        white-space: nowrap;
+        position: relative;
+        padding: 4px 0;
+      }
+
+      .nav-link::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background-color: var(--color-nile-green);
+        transition: width var(--transition);
+        border-radius: 2px;
+      }
+
+      .nav-link:hover {
+        color: var(--color-espresso);
+      }
+
+      .nav-link:hover::after {
+        width: 100%;
+      }
+
+      /* Zone 3: Header Actions */
+      .header-actions {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        flex-shrink: 0;
+      }
+
+      .cart-btn {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 44px;
+        height: 44px;
+        border-radius: var(--radius-sm);
+        background-color: var(--color-surface);
+        color: var(--color-espresso);
+        border: 1px solid var(--color-border);
+        transition: all var(--transition);
+      }
+
+      .cart-btn:hover {
+        background-color: var(--color-surface-hover);
+        color: var(--color-nile-green);
+      }
+
+      .cart-btn svg {
+        width: 20px;
+        height: 20px;
+      }
+
+      .cart-badge {
+        position: absolute;
+        top: -4px;
+        right: -4px;
+        background-color: var(--color-nile-green);
+        color: #ffffff;
+        font-size: 0.72rem;
+        font-weight: 700;
+        min-width: 20px;
+        height: 20px;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0 4px;
+        box-shadow: 0 2px 6px rgba(22, 45, 34, 0.3);
+      }
+
+      .btn-primary {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        padding: 11px 22px;
+        font-size: 0.925rem;
+        font-weight: 600;
+        border-radius: var(--radius-full);
+        background-color: var(--color-nile-green);
+        color: #ffffff;
+        box-shadow: 0 4px 12px rgba(22, 45, 34, 0.18);
+        transition: all var(--transition);
+        white-space: nowrap;
+        flex-shrink: 0;
+      }
+
+      .btn-primary:hover {
+        background-color: var(--color-nile-deep);
+        transform: translateY(-1px);
+        box-shadow: 0 6px 16px rgba(22, 45, 34, 0.24);
+      }
+
+      .btn-primary:active {
+        transform: translateY(0);
+      }
+
+      /* Mobile Hamburger Button */
+      .hamburger-btn {
+        display: none;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 5px;
+        width: 44px;
+        height: 44px;
+        border-radius: var(--radius-sm);
+        background-color: transparent;
+        color: var(--color-espresso);
+        cursor: pointer;
+        transition: background-color var(--transition);
+      }
+
+      .hamburger-btn:hover {
+        background-color: rgba(77, 45, 29, 0.06);
+      }
+
+      .hamburger-line {
+        width: 22px;
+        height: 2.2px;
+        background-color: var(--color-espresso);
+        border-radius: 2px;
+        transition: transform var(--transition), opacity var(--transition);
+      }
+
+      .hamburger-btn.is-active .hamburger-line:nth-child(1) {
+        transform: translateY(7.2px) rotate(45deg);
+      }
+      .hamburger-btn.is-active .hamburger-line:nth-child(2) {
+        opacity: 0;
+      }
+      .hamburger-btn.is-active .hamburger-line:nth-child(3) {
+        transform: translateY(-7.2px) rotate(-45deg);
+      }
+
+      /* Mobile Nav Drawer */
+      .mobile-nav-drawer {
+        display: none;
+        position: fixed;
+        top: 76px;
+        left: 0;
+        right: 0;
+        background-color: var(--color-bg);
+        border-bottom: 1px solid var(--color-border);
+        box-shadow: 0 20px 30px rgba(38, 21, 15, 0.1);
+        padding: 24px;
+        z-index: 89;
+        transform: translateY(-8px);
+        opacity: 0;
+        pointer-events: none;
+        transition: transform 0.24s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.24s ease;
+      }
+
+      .mobile-nav-drawer.is-open {
+        transform: translateY(0);
+        opacity: 1;
+        pointer-events: auto;
+      }
+
+      .mobile-nav-links {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        margin-bottom: 24px;
+      }
+
+      .mobile-nav-links .nav-link {
+        font-size: 1.15rem;
+        font-weight: 600;
+        display: block;
+        padding: 6px 0;
+      }
+
+      /* ==========================================================================
+         Hero Section: "Fresh Coffee, Fast" & Button "Order Now"
+         ========================================================================== */
+      .hero-section {
+        padding-top: 64px;
+        padding-bottom: 72px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .hero-grid {
+        display: grid;
+        grid-template-columns: 1.15fr 0.85fr;
+        align-items: center;
+        gap: 48px;
+      }
+
+      .hero-badge-kicker {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 0.85rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--color-nile-medium);
+        margin-bottom: 16px;
+      }
+
+      .hero-kicker-dot {
+        width: 8px;
+        height: 8px;
+        background-color: var(--color-caramel);
+        border-radius: 50%;
+      }
+
+      .hero-headline {
+        font-family: var(--font-serif);
+        font-size: clamp(2.6rem, 5vw, 4.2rem);
+        line-height: 1.08;
+        font-weight: 700;
+        color: var(--color-espresso);
+        letter-spacing: -0.03em;
+        text-wrap: balance;
+        margin-bottom: 20px;
+      }
+
+      .hero-headline span.accent {
+        color: var(--color-nile-green);
+        font-style: italic;
+      }
+
+      .hero-subtext {
+        font-size: 1.1rem;
+        line-height: 1.65;
+        color: var(--color-text-muted);
+        max-width: 520px;
+        margin-bottom: 32px;
+      }
+
+      .hero-cta-group {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 16px;
+        margin-bottom: 36px;
+      }
+
+      .btn-hero-primary {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        padding: 15px 32px;
+        font-size: 1.05rem;
+        font-weight: 600;
+        border-radius: var(--radius-full);
+        background-color: var(--color-nile-green);
+        color: #ffffff;
+        box-shadow: 0 8px 24px rgba(22, 45, 34, 0.22);
+        transition: all var(--transition);
+        white-space: nowrap;
+      }
+
+      .btn-hero-primary:hover {
+        background-color: var(--color-nile-deep);
+        transform: translateY(-2px);
+        box-shadow: 0 12px 30px rgba(22, 45, 34, 0.28);
+      }
+
+      .btn-hero-secondary {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        padding: 14px 26px;
+        font-size: 1rem;
+        font-weight: 600;
+        border-radius: var(--radius-full);
+        background-color: transparent;
+        color: var(--color-roast-medium);
+        border: 1.5px solid var(--color-border-strong);
+        transition: all var(--transition);
+        white-space: nowrap;
+      }
+
+      .btn-hero-secondary:hover {
+        background-color: var(--color-surface);
+        border-color: var(--color-roast-light);
+        color: var(--color-espresso);
+      }
+
+      .hero-proof-strip {
+        display: flex;
+        align-items: center;
+        gap: 24px;
+        padding-top: 20px;
+        border-top: 1px solid var(--color-border);
+      }
+
+      .hero-proof-item {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .hero-proof-val {
+        font-family: var(--font-serif);
+        font-size: 1.35rem;
+        font-weight: 700;
+        color: var(--color-espresso);
+        line-height: 1.2;
+      }
+
+      .hero-proof-lbl {
+        font-size: 0.8rem;
+        color: var(--color-text-subtle);
+        font-weight: 500;
+      }
+
+      .hero-proof-divider {
+        width: 1px;
+        height: 28px;
+        background-color: var(--color-border);
+      }
+
+      /* Hero Visual Showcase */
+      .hero-visual-card {
+        background: linear-gradient(145deg, #f5eedf 0%, #ebdcc2 100%);
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius-xl);
+        padding: 32px;
+        position: relative;
+        box-shadow: var(--shadow-lift);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+
+      .coffee-cup-graphic {
+        width: 240px;
+        height: 240px;
+        margin: 8px auto 20px;
+        position: relative;
+      }
+
+      @keyframes steamFloat {
+        0% {
+          transform: translateY(0) scaleX(1);
+          opacity: 0.2;
+        }
+        50% {
+          transform: translateY(-8px) scaleX(1.1);
+          opacity: 0.65;
+        }
+        100% {
+          transform: translateY(-16px) scaleX(1.2);
+          opacity: 0;
+        }
+      }
+
+      .steam-line {
+        animation: steamFloat 2.8s ease-in-out infinite;
+      }
+      .steam-line:nth-child(2) {
+        animation-delay: 0.7s;
+      }
+      .steam-line:nth-child(3) {
+        animation-delay: 1.4s;
+      }
+
+      .hero-cup-badge {
+        background-color: var(--color-nile-deep);
+        color: #ffffff;
+        padding: 10px 18px;
+        border-radius: var(--radius-full);
+        font-size: 0.825rem;
+        font-weight: 600;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        box-shadow: 0 4px 14px rgba(22, 45, 34, 0.2);
+      }
+
+      .hero-cup-badge svg {
+        width: 14px;
+        height: 14px;
+        color: #e5ece8;
+      }
+
+      /* ==========================================================================
+         Section Common Styles
+         ========================================================================== */
+      .section-header {
+        text-align: center;
+        max-width: 640px;
+        margin: 0 auto 48px;
+      }
+
+      .section-kicker {
+        font-size: 0.825rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--color-nile-medium);
+        margin-bottom: 10px;
+      }
+
+      .section-title {
+        font-family: var(--font-serif);
+        font-size: clamp(2rem, 3.2vw, 2.75rem);
+        font-weight: 700;
+        color: var(--color-espresso);
+        line-height: 1.18;
+        letter-spacing: -0.02em;
+        margin-bottom: 14px;
+      }
+
+      .section-description {
+        font-size: 1.05rem;
+        color: var(--color-text-muted);
+        line-height: 1.6;
+      }
+
+      /* ==========================================================================
+         Three Feature Cards: Fast Delivery, Organic Beans, Cozy Space
+         Desktop: 3 columns. Mobile: Stacks vertically.
+         ========================================================================== */
+      .features-section {
+        padding-top: 56px;
+        padding-bottom: 84px;
+      }
+
+      .features-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 28px;
+      }
+
+      .feature-card {
+        background-color: var(--color-surface);
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius-lg);
+        padding: 36px 30px;
+        position: relative;
+        transition: transform var(--transition), box-shadow var(--transition),
+          border-color var(--transition);
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+      }
+
+      .feature-card:hover {
+        transform: translateY(-4px);
+        box-shadow: var(--shadow-lift);
+        border-color: var(--color-border-strong);
+        background-color: var(--color-surface-hover);
+      }
+
+      .feature-icon-wrapper {
+        width: 58px;
+        height: 58px;
+        border-radius: 14px;
+        background-color: var(--color-nile-mist);
+        color: var(--color-nile-green);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 24px;
+        transition: background-color var(--transition), color var(--transition);
+      }
+
+      .feature-card:nth-child(2) .feature-icon-wrapper {
+        background-color: #f1ebd9;
+        color: var(--color-roast-medium);
+      }
+
+      .feature-card:nth-child(3) .feature-icon-wrapper {
+        background-color: #e8e3d3;
+        color: var(--color-caramel);
+      }
+
+      .feature-icon-wrapper svg {
+        width: 28px;
+        height: 28px;
+      }
+
+      .feature-title {
+        font-family: var(--font-serif);
+        font-size: 1.45rem;
+        font-weight: 700;
+        color: var(--color-espresso);
+        margin-bottom: 12px;
+        letter-spacing: -0.01em;
+      }
+
+      .feature-desc {
+        font-size: 0.98rem;
+        line-height: 1.65;
+        color: var(--color-text-muted);
+        margin-bottom: 24px;
+        flex-grow: 1;
+      }
+
+      .feature-meta-tag {
+        font-size: 0.8rem;
+        font-weight: 600;
+        color: var(--color-nile-medium);
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding-top: 14px;
+        border-top: 1px dashed var(--color-border);
+      }
+
+      /* ==========================================================================
+         Interactive Menu Showcase & Filterable Roasts
+         ========================================================================== */
+      .menu-section {
+        padding-top: 60px;
+        padding-bottom: 84px;
+        background-color: #f4edd9;
+        border-top: 1px solid var(--color-border);
+        border-bottom: 1px solid var(--color-border);
+      }
+
+      .menu-filters {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-bottom: 36px;
+      }
+
+      .filter-btn {
+        padding: 8px 18px;
+        font-size: 0.88rem;
+        font-weight: 600;
+        border-radius: var(--radius-full);
+        background-color: var(--color-bg);
+        color: var(--color-text-muted);
+        border: 1px solid var(--color-border);
+        transition: all var(--transition);
+      }
+
+      .filter-btn:hover {
+        border-color: var(--color-roast-medium);
+        color: var(--color-espresso);
+      }
+
+      .filter-btn.active {
+        background-color: var(--color-nile-green);
+        color: #ffffff;
+        border-color: var(--color-nile-green);
+      }
+
+      .menu-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 22px;
+        margin-bottom: 36px;
+      }
+
+      .menu-item-card {
+        background-color: var(--color-bg);
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius-md);
+        padding: 24px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        transition: transform var(--transition), box-shadow var(--transition);
+      }
+
+      .menu-item-card:hover {
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-subtle);
+      }
+
+      .menu-item-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 12px;
+        margin-bottom: 8px;
+      }
+
+      .menu-item-name {
+        font-family: var(--font-serif);
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: var(--color-espresso);
+      }
+
+      .menu-item-price {
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: var(--color-nile-green);
+        white-space: nowrap;
+      }
+
+      .menu-item-desc {
+        font-size: 0.88rem;
+        color: var(--color-text-muted);
+        margin-bottom: 20px;
+        line-height: 1.5;
+        flex-grow: 1;
+      }
+
+      .menu-item-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+        width: 100%;
+        padding: 10px 16px;
+        font-size: 0.9rem;
+        font-weight: 600;
+        border-radius: var(--radius-sm);
+        background-color: var(--color-surface);
+        color: var(--color-espresso);
+        border: 1.5px solid var(--color-border-strong);
+        transition: all var(--transition);
+      }
+
+      .menu-item-btn:hover {
+        background-color: var(--color-nile-green);
+        color: #ffffff;
+        border-color: var(--color-nile-green);
+      }
+
+      /* ==========================================================================
+         Testimonial Section
+         ========================================================================== */
+      .testimonial-section {
+        padding-top: 72px;
+        padding-bottom: 84px;
+        position: relative;
+      }
+
+      .testimonial-container {
+        max-width: 860px;
+        margin: 0 auto;
+        background: linear-gradient(135deg, #1e3d2e 0%, #162d22 100%);
+        border-radius: var(--radius-xl);
+        padding: 56px 48px;
+        color: #ffffff;
+        box-shadow: var(--shadow-lift);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .testimonial-quote-icon {
+        position: absolute;
+        top: 28px;
+        right: 36px;
+        width: 68px;
+        height: 68px;
+        color: rgba(255, 255, 255, 0.08);
+      }
+
+      .testimonial-quote-text {
+        font-family: var(--font-serif);
+        font-size: clamp(1.3rem, 2.4vw, 1.75rem);
+        line-height: 1.45;
+        font-weight: 400;
+        font-style: italic;
+        color: #f7f2e7;
+        margin-bottom: 32px;
+        position: relative;
+        z-index: 2;
+      }
+
+      .testimonial-author-block {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        position: relative;
+        z-index: 2;
+      }
+
+      .testimonial-avatar {
+        width: 52px;
+        height: 52px;
+        border-radius: 50%;
+        background-color: var(--color-caramel);
+        color: #ffffff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: var(--font-serif);
+        font-size: 1.2rem;
+        font-weight: 700;
+        border: 2px solid rgba(255, 255, 255, 0.2);
+        flex-shrink: 0;
+      }
+
+      .testimonial-author-info {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .testimonial-author-name {
+        font-size: 1.05rem;
+        font-weight: 700;
+        color: #ffffff;
+      }
+
+      .testimonial-author-meta {
+        font-size: 0.85rem;
+        color: #c9dbd1;
+      }
+
+      /* ==========================================================================
+         About & Story Section
+         ========================================================================== */
+      .about-section {
+        padding-top: 64px;
+        padding-bottom: 72px;
+      }
+
+      .about-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 48px;
+        align-items: center;
+      }
+
+      .about-content h2 {
+        font-family: var(--font-serif);
+        font-size: 2.2rem;
+        line-height: 1.2;
+        color: var(--color-espresso);
+        margin-bottom: 16px;
+      }
+
+      .about-content p {
+        color: var(--color-text-muted);
+        font-size: 1.025rem;
+        line-height: 1.7;
+        margin-bottom: 18px;
+      }
+
+      .about-highlights {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+        margin-top: 24px;
+      }
+
+      .about-stat-box {
+        padding: 16px;
+        background-color: var(--color-surface);
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius-md);
+      }
+
+      .about-stat-num {
+        font-family: var(--font-serif);
+        font-size: 1.6rem;
+        font-weight: 700;
+        color: var(--color-nile-green);
+        line-height: 1.1;
+      }
+
+      .about-stat-label {
+        font-size: 0.825rem;
+        color: var(--color-text-subtle);
+      }
+
+      .about-card-visual {
+        background-color: var(--color-surface);
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius-lg);
+        padding: 36px;
+        text-align: center;
+      }
+
+      /* ==========================================================================
+         Contact & Live Working Inquiry Section
+         ========================================================================== */
+      .contact-section {
+        padding-top: 56px;
+        padding-bottom: 76px;
+        border-top: 1px solid var(--color-border);
+      }
+
+      .contact-grid {
+        display: grid;
+        grid-template-columns: 1fr 1.1fr;
+        gap: 36px;
+      }
+
+      .contact-info-card {
+        background-color: var(--color-surface);
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius-lg);
+        padding: 32px;
+      }
+
+      .contact-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 14px;
+        margin-bottom: 22px;
+      }
+
+      .contact-icon {
+        width: 38px;
+        height: 38px;
+        border-radius: 10px;
+        background-color: var(--color-nile-mist);
+        color: var(--color-nile-green);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+      }
+
+      .contact-icon svg {
+        width: 20px;
+        height: 20px;
+      }
+
+      .contact-label {
+        font-size: 0.78rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        color: var(--color-text-subtle);
+        letter-spacing: 0.05em;
+      }
+
+      .contact-val {
+        font-size: 0.95rem;
+        font-weight: 600;
+        color: var(--color-espresso);
+      }
+
+      .contact-form-card {
+        background-color: var(--color-surface);
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius-lg);
+        padding: 32px;
+      }
+
+      .form-grid-2 {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+      }
+
+      .input-text,
+      .textarea-input {
+        width: 100%;
+        padding: 12px 16px;
+        border-radius: var(--radius-sm);
+        border: 1.5px solid var(--color-border-strong);
+        background-color: #ffffff;
+        font-family: inherit;
+        font-size: 0.92rem;
+        color: var(--color-espresso);
+        outline: none;
+        transition: border-color var(--transition);
+      }
+
+      .textarea-input {
+        resize: vertical;
+        min-height: 100px;
+      }
+
+      .input-text:focus,
+      .textarea-input:focus {
+        border-color: var(--color-nile-green);
+      }
+
+      /* Newsletter Bar */
+      .newsletter-box {
+        margin-top: 24px;
+        padding-top: 24px;
+        border-top: 1px solid var(--color-border);
+      }
+
+      .newsletter-input-group {
+        display: flex;
+        gap: 8px;
+        margin-top: 12px;
+      }
+
+      /* Promo discount badge */
+      .discount-code-tag {
+        display: none;
+        align-items: center;
+        justify-content: space-between;
+        background-color: var(--color-nile-mist);
+        border: 1px dashed var(--color-nile-medium);
+        padding: 10px 14px;
+        border-radius: var(--radius-sm);
+        margin-top: 12px;
+        font-size: 0.85rem;
+        color: var(--color-nile-deep);
+        font-weight: 600;
+      }
+
+      .discount-code-tag.active {
+        display: flex;
+      }
+
+      /* ==========================================================================
+         Footer & Authentic Social Media Links (Instagram, Telegram, X, Facebook, YouTube)
+         ========================================================================== */
+      .site-footer {
+        background-color: var(--color-espresso);
+        color: #f7f2e7;
+        padding-top: 56px;
+        padding-bottom: 40px;
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+      }
+
+      .footer-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 28px;
+        padding-bottom: 36px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+      }
+
+      .footer-brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-family: var(--font-serif);
+        font-size: 1.45rem;
+        font-weight: 700;
+        color: #ffffff;
+      }
+
+      .footer-links {
+        display: flex;
+        gap: 28px;
+        list-style: none;
+      }
+
+      .footer-links a {
+        color: #d1c3b7;
+        font-size: 0.95rem;
+      }
+
+      .footer-links a:hover {
+        color: #ffffff;
+      }
+
+      /* Social Media Strip */
+      .footer-social-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 10px;
+      }
+
+      .footer-social-label {
+        font-size: 0.825rem;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: #c9b9ac;
+        font-weight: 600;
+      }
+
+      .social-icons-strip {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .social-link {
+        width: 42px;
+        height: 42px;
+        border-radius: 50%;
+        background-color: rgba(255, 255, 255, 0.08);
+        color: #f7f2e7;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all var(--transition);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .social-link svg {
+        width: 19px;
+        height: 19px;
+        fill: currentColor;
+      }
+
+      .social-link:hover {
+        background-color: var(--color-caramel);
+        color: #ffffff;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(192, 125, 60, 0.35);
+      }
+
+      .social-link:active {
+        transform: translateY(0);
+      }
+
+      .footer-bottom {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 16px;
+        padding-top: 28px;
+        font-size: 0.85rem;
+        color: #a49184;
+      }
+
+      /* ==========================================================================
+         Real Working Order / Cart Drawer & Modal
+         ========================================================================== */
+      .modal-backdrop {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background-color: rgba(38, 21, 15, 0.65);
+        backdrop-filter: blur(5px);
+        -webkit-backdrop-filter: blur(5px);
+        z-index: 100;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+        opacity: 0;
+        transition: opacity var(--transition);
+      }
+
+      .modal-backdrop.is-open {
+        display: flex;
+        opacity: 1;
+      }
+
+      .order-modal {
+        background-color: var(--color-bg);
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius-xl);
+        max-width: 520px;
+        width: 100%;
+        max-height: 90vh;
+        overflow-y: auto;
+        padding: 32px;
+        box-shadow: var(--shadow-modal);
+        position: relative;
+        transform: scale(0.96) translateY(8px);
+        transition: transform var(--transition);
+      }
+
+      .modal-backdrop.is-open .order-modal {
+        transform: scale(1) translateY(0);
+      }
+
+      .modal-close-btn {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        background-color: var(--color-surface);
+        color: var(--color-espresso);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: background-color var(--transition);
+      }
+
+      .modal-close-btn:hover {
+        background-color: var(--color-surface-hover);
+      }
+
+      .modal-title {
+        font-family: var(--font-serif);
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: var(--color-espresso);
+        margin-bottom: 6px;
+      }
+
+      .modal-subtitle {
+        font-size: 0.92rem;
+        color: var(--color-text-muted);
+        margin-bottom: 24px;
+      }
+
+      .form-group {
+        margin-bottom: 18px;
+      }
+
+      .form-label {
+        display: block;
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: var(--color-espresso);
+        margin-bottom: 8px;
+      }
+
+      .select-input {
+        width: 100%;
+        padding: 11px 14px;
+        border-radius: var(--radius-sm);
+        border: 1.5px solid var(--color-border-strong);
+        background-color: #ffffff;
+        font-family: inherit;
+        font-size: 0.95rem;
+        color: var(--color-espresso);
+      }
+
+      .size-selector {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 8px;
+      }
+
+      .size-option-btn {
+        padding: 10px;
+        text-align: center;
+        border: 1.5px solid var(--color-border-strong);
+        border-radius: var(--radius-sm);
+        background-color: #ffffff;
+        font-size: 0.88rem;
+        font-weight: 600;
+        color: var(--color-espresso);
+        transition: all var(--transition);
+      }
+
+      .size-option-btn.selected {
+        border-color: var(--color-nile-green);
+        background-color: var(--color-nile-mist);
+        color: var(--color-nile-green);
+      }
+
+      .checkbox-addon-label {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 0.9rem;
+        color: var(--color-text-muted);
+        cursor: pointer;
+        margin-bottom: 6px;
+      }
+
+      .checkbox-addon-label input {
+        accent-color: var(--color-nile-green);
+        width: 16px;
+        height: 16px;
+      }
+
+      .order-summary-box {
+        background-color: var(--color-surface);
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius-md);
+        padding: 18px;
+        margin: 20px 0;
+      }
+
+      .summary-line {
+        display: flex;
+        justify-content: space-between;
+        font-size: 0.9rem;
+        color: var(--color-text-muted);
+        margin-bottom: 6px;
+      }
+
+      .summary-line.total {
+        font-size: 1.15rem;
+        font-weight: 700;
+        color: var(--color-espresso);
+        border-top: 1px solid var(--color-border);
+        padding-top: 8px;
+        margin-top: 8px;
+      }
+
+      .summary-line.total .price {
+        font-family: var(--font-serif);
+        color: var(--color-nile-green);
+        font-size: 1.35rem;
+      }
+
+      /* Cart & Order Status Tracker Drawer */
+      .cart-drawer {
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        width: 100%;
+        max-width: 420px;
+        background-color: var(--color-bg);
+        border-left: 1px solid var(--color-border);
+        box-shadow: -8px 0 30px rgba(38, 21, 15, 0.15);
+        z-index: 105;
+        display: flex;
+        flex-direction: column;
+        transform: translateX(100%);
+        transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+
+      .cart-drawer.is-open {
+        transform: translateX(0);
+      }
+
+      .cart-drawer-header {
+        padding: 22px 24px;
+        border-bottom: 1px solid var(--color-border);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .cart-drawer-header h3 {
+        font-family: var(--font-serif);
+        font-size: 1.4rem;
+        color: var(--color-espresso);
+      }
+
+      .cart-drawer-content {
+        padding: 24px;
+        flex: 1;
+        overflow-y: auto;
+      }
+
+      .cart-empty-state {
+        text-align: center;
+        padding: 40px 10px;
+        color: var(--color-text-muted);
+      }
+
+      .cart-item {
+        background-color: var(--color-surface);
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius-sm);
+        padding: 14px;
+        margin-bottom: 12px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .cart-item-name {
+        font-weight: 700;
+        font-size: 0.95rem;
+        color: var(--color-espresso);
+      }
+
+      .cart-item-details {
+        font-size: 0.8rem;
+        color: var(--color-text-subtle);
+      }
+
+      .cart-item-remove {
+        color: #b91c1c;
+        font-size: 0.8rem;
+        font-weight: 600;
+        cursor: pointer;
+        padding: 4px;
+      }
+
+      /* Live Order Tracking Card */
+      .live-tracker-box {
+        background: linear-gradient(135deg, #1e3d2e 0%, #162d22 100%);
+        color: #ffffff;
+        border-radius: var(--radius-md);
+        padding: 18px;
+        margin-top: 16px;
+      }
+
+      .tracker-title-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 12px;
+      }
+
+      .tracker-progress-bar {
+        height: 6px;
+        background-color: rgba(255, 255, 255, 0.2);
+        border-radius: 3px;
+        overflow: hidden;
+        margin-bottom: 12px;
+      }
+
+      .tracker-progress-fill {
+        height: 100%;
+        background-color: var(--color-caramel);
+        border-radius: 3px;
+        transition: width 0.6s ease;
+      }
+
+      .tracker-status-step {
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: #e5ece8;
+      }
+
+      /* Notification Toast */
+      .toast {
+        position: fixed;
+        bottom: 24px;
+        right: 24px;
+        background-color: var(--color-nile-deep);
+        color: #ffffff;
+        padding: 14px 22px;
+        border-radius: var(--radius-md);
+        box-shadow: var(--shadow-modal);
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-size: 0.92rem;
+        font-weight: 600;
+        z-index: 110;
+        transform: translateY(120px);
+        opacity: 0;
+        transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+      }
+
+      .toast.is-visible {
+        transform: translateY(0);
+        opacity: 1;
+      }
+
+      /* ==========================================================================
+         Responsive Breakpoints
+         - Hamburger appears on mobile
+         - Three cards stack vertically
+         ========================================================================== */
+      @media (max-width: 900px) {
+        .hero-grid {
+          grid-template-columns: 1fr;
+          gap: 40px;
+        }
+
+        .hero-visual-card {
+          max-width: 440px;
+          margin: 0 auto;
+        }
+
+        .about-grid,
+        .contact-grid {
+          grid-template-columns: 1fr;
+          gap: 32px;
+        }
+
+        .footer-social-wrapper {
+          align-items: flex-start;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .nav-links,
+        .header-actions .btn-primary {
+          display: none;
+        }
+
+        .hamburger-btn {
+          display: flex;
+        }
+
+        .mobile-nav-drawer {
+          display: block;
+        }
+
+        /* The 3 feature cards strictly stack vertically on mobile */
+        .features-grid {
+          grid-template-columns: 1fr;
+          gap: 20px;
+        }
+
+        .testimonial-container {
+          padding: 36px 24px;
+        }
+
+        .hero-section {
+          padding-top: 36px;
+          padding-bottom: 48px;
+        }
+
+        .hero-proof-strip {
+          gap: 16px;
+          justify-content: space-between;
+        }
+
+        .footer-top,
+        .footer-bottom {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 24px;
+        }
+
+        .footer-links {
+          flex-direction: column;
+          gap: 14px;
+        }
+
+        .form-grid-2 {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- =======================================================================
+         Header with "Nile Coffee" Logo and Nav (Home, Menu, About, Contact)
+         ======================================================================= -->
+    <header class="site-header" id="siteHeader">
+      <div class="container header-inner">
+        <!-- Zone 1: Nile Coffee Logo -->
+        <a href="#home" class="brand-logo" aria-label="Nile Coffee Homepage">
+          <span class="brand-icon" aria-hidden="true">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M18 8h1a4 4 0 0 1 0 8h-1"></path>
+              <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path>
+              <line x1="6" y1="1" x2="6" y2="4"></line>
+              <line x1="10" y1="1" x2="10" y2="4"></line>
+              <line x1="14" y1="1" x2="14" y2="4"></line>
+            </svg>
+          </span>
+          <span>Nile Coffee</span>
+        </a>
+
+        <!-- Zone 2: Navigation Links -->
+        <nav aria-label="Primary Navigation">
+          <ul class="nav-links">
+            <li><a href="#home" class="nav-link">Home</a></li>
+            <li><a href="#menu" class="nav-link">Menu</a></li>
+            <li><a href="#about" class="nav-link">About</a></li>
+            <li><a href="#contact" class="nav-link">Contact</a></li>
+          </ul>
+        </nav>
+
+        <!-- Zone 3: Primary Action, Cart Drawer & Mobile Hamburger -->
+        <div class="header-actions">
+          <!-- Real working cart trigger -->
+          <button
+            type="button"
+            class="cart-btn"
+            id="headerCartBtn"
+            aria-label="View orders and cart"
+            title="Cart & Order Status"
+          >
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+              <line x1="3" y1="6" x2="21" y2="6"></line>
+              <path d="M16 10a4 4 0 0 1-8 0"></path>
+            </svg>
+            <span class="cart-badge" id="cartBadgeCount">0</span>
+          </button>
+
+          <button
+            type="button"
+            class="btn-primary"
+            id="headerOrderBtn"
+            aria-label="Order coffee now"
+          >
+            <span>Order Now</span>
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </button>
+
+          <!-- Mobile Hamburger Toggle -->
+          <button
+            type="button"
+            class="hamburger-btn"
+            id="hamburgerBtn"
+            aria-expanded="false"
+            aria-controls="mobileNavDrawer"
+            aria-label="Toggle navigation menu"
+          >
+            <span class="hamburger-line" aria-hidden="true"></span>
+            <span class="hamburger-line" aria-hidden="true"></span>
+            <span class="hamburger-line" aria-hidden="true"></span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Collapsible Mobile Menu Drawer -->
+      <div class="mobile-nav-drawer" id="mobileNavDrawer" aria-hidden="true">
+        <ul class="mobile-nav-links">
+          <li><a href="#home" class="nav-link mobile-link">Home</a></li>
+          <li><a href="#menu" class="nav-link mobile-link">Menu</a></li>
+          <li><a href="#about" class="nav-link mobile-link">About</a></li>
+          <li><a href="#contact" class="nav-link mobile-link">Contact</a></li>
+        </ul>
+        <div style="display: flex; gap: 10px;">
+          <button
+            type="button"
+            class="btn-primary"
+            id="mobileOrderBtn"
+            style="flex: 1"
+          >
+            <span>Order Now</span>
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </button>
+          <button
+            type="button"
+            class="cart-btn"
+            id="mobileCartBtn"
+            aria-label="View cart"
+          >
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+              <line x1="3" y1="6" x2="21" y2="6"></line>
+              <path d="M16 10a4 4 0 0 1-8 0"></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <!-- =======================================================================
+           Hero Section: "Fresh Coffee, Fast" & Button "Order Now"
+           ======================================================================= -->
+      <section class="hero-section" id="home">
+        <div class="container">
+          <div class="hero-grid">
+            <div class="hero-content">
+              <div class="hero-badge-kicker">
+                <span class="hero-kicker-dot" aria-hidden="true"></span>
+                <span>Direct Nile Basin Roastery · Small Batch</span>
+              </div>
+              <h1 class="hero-headline">
+                Fresh Coffee, <span class="accent">Fast</span>
+              </h1>
+              <p class="hero-subtext">
+                Shade-grown Ethiopian and Nile-valley single origin roasts,
+                brewed to order and delivered piping hot to your table or doorstep
+                in under 15 minutes.
+              </p>
+              <div class="hero-cta-group">
+                <button
+                  type="button"
+                  class="btn-hero-primary"
+                  id="heroOrderBtn"
+                  aria-label="Order coffee online"
+                >
+                  <span>Order Now</span>
+                  <svg
+                    width="18"
+                    height="18"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                  >
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                    <polyline points="12 5 19 12 12 19"></polyline>
+                  </svg>
+                </button>
+                <a href="#menu" class="btn-hero-secondary">
+                  <span>Explore Menu</span>
+                </a>
+              </div>
+
+              <!-- Real quantitative proof metrics -->
+              <div class="hero-proof-strip">
+                <div class="hero-proof-item">
+                  <span class="hero-proof-val">12 min</span>
+                  <span class="hero-proof-lbl">Average Delivery</span>
+                </div>
+                <div class="hero-proof-divider" aria-hidden="true"></div>
+                <div class="hero-proof-item">
+                  <span class="hero-proof-val">100%</span>
+                  <span class="hero-proof-lbl">Organic Single-Origin</span>
+                </div>
+                <div class="hero-proof-divider" aria-hidden="true"></div>
+                <div class="hero-proof-item">
+                  <span class="hero-proof-val">4.9 / 5</span>
+                  <span class="hero-proof-lbl">3,400+ Local Reviews</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Hero Coffee Showcase Graphic -->
+            <div class="hero-visual-card" aria-label="Freshly brewed Nile coffee">
+              <div class="coffee-cup-graphic">
+                <svg
+                  viewBox="0 0 200 200"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  style="width: 100%; height: 100%"
+                >
+                  <!-- Rising Steam Lines -->
+                  <path
+                    class="steam-line"
+                    d="M75 50 C 70 35, 85 25, 75 10"
+                    stroke="#1e3d2e"
+                    stroke-width="3"
+                    stroke-linecap="round"
+                    fill="none"
+                  />
+                  <path
+                    class="steam-line"
+                    d="M100 45 C 95 30, 110 20, 100 5"
+                    stroke="#c07d3c"
+                    stroke-width="3.5"
+                    stroke-linecap="round"
+                    fill="none"
+                  />
+                  <path
+                    class="steam-line"
+                    d="M125 50 C 120 35, 135 25, 125 10"
+                    stroke="#1e3d2e"
+                    stroke-width="3"
+                    stroke-linecap="round"
+                    fill="none"
+                  />
+
+                  <!-- Cup Body -->
+                  <path
+                    d="M40 70 L160 70 C 155 140, 135 165, 100 165 C 65 165, 45 140, 40 70 Z"
+                    fill="#382015"
+                  />
+                  <!-- Cup Inner Coffee Surface -->
+                  <ellipse cx="100" cy="70" rx="60" ry="14" fill="#26150f" />
+                  <!-- Latte Art Heart Motif -->
+                  <path
+                    d="M100 78 C 88 68, 78 74, 94 82 C 100 85, 100 85, 106 82 C 122 74, 112 68, 100 78 Z"
+                    fill="#ebdcc2"
+                  />
+
+                  <!-- Handle -->
+                  <path
+                    d="M152 82 C 176 82, 178 126, 148 132"
+                    stroke="#382015"
+                    stroke-width="12"
+                    stroke-linecap="round"
+                    fill="none"
+                  />
+
+                  <!-- Saucer Plate -->
+                  <ellipse cx="100" cy="168" rx="82" ry="12" fill="#1e3d2e" />
+                  <ellipse cx="100" cy="166" rx="74" ry="8" fill="#2a523e" />
+                </svg>
+              </div>
+
+              <div class="hero-cup-badge">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                </svg>
+                <span>Fresh Roast of the Day: Yirgacheffe Honey</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =======================================================================
+           Three Feature Cards: Fast Delivery, Organic Beans, Cozy Space
+           (Stacks vertically on mobile)
+           ======================================================================= -->
+      <section class="features-section" id="features">
+        <div class="container">
+          <div class="section-header">
+            <span class="section-kicker">Crafted For Coffee Lovers</span>
+            <h2 class="section-title">The Nile Coffee Standard</h2>
+            <p class="section-description">
+              Every detail—from fertile soil harvests to our pressurized thermos
+              dispatch—is engineered to honor true coffee culture.
+            </p>
+          </div>
+
+          <div class="features-grid">
+            <!-- Feature Card 1: Fast Delivery -->
+            <article class="feature-card">
+              <div class="feature-icon-wrapper" aria-hidden="true">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <rect x="1" y="3" width="15" height="13"></rect>
+                  <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon>
+                  <circle cx="5.5" cy="18.5" r="2.5"></circle>
+                  <circle cx="18.5" cy="18.5" r="2.5"></circle>
+                </svg>
+              </div>
+              <h3 class="feature-title">Fast Delivery</h3>
+              <p class="feature-desc">
+                Freshly extracted espresso and pour-overs packaged in temperature-locked,
+                compostable thermal carriers. Dispatched via dedicated electric couriers
+                to your door in minutes.
+              </p>
+              <div class="feature-meta-tag">
+                <span>⏱ Average delivery time: 12 minutes</span>
+              </div>
+            </article>
+
+            <!-- Feature Card 2: Organic Beans -->
+            <article class="feature-card">
+              <div class="feature-icon-wrapper" aria-hidden="true">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"></path>
+                  <path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"></path>
+                </svg>
+              </div>
+              <h3 class="feature-title">Organic Beans</h3>
+              <p class="feature-desc">
+                100% certified shade-grown Arabica sourced directly from high-altitude
+                micro-farms across the fertile Nile River basin. Roasted locally in small
+                batches every morning.
+              </p>
+              <div class="feature-meta-tag">
+                <span>🌱 Fair Trade & Certified Organic</span>
+              </div>
+            </article>
+
+            <!-- Feature Card 3: Cozy Space -->
+            <article class="feature-card">
+              <div class="feature-icon-wrapper" aria-hidden="true">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                  <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                  <line x1="8" y1="6" x2="16" y2="6"></line>
+                  <line x1="8" y1="10" x2="14" y2="10"></line>
+                </svg>
+              </div>
+              <h3 class="feature-title">Cozy Space</h3>
+              <p class="feature-desc">
+                Natural sunlight, reclaimed oak tables, curated vinyl selections,
+                and high-speed fiber Wi-Fi. A tranquil sanctuary for focused work,
+                spirited conversation, or quiet moments.
+              </p>
+              <div class="feature-meta-tag">
+                <span>☕ Open daily from 6:30 AM to 8:00 PM</span>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- =======================================================================
+           Filterable Menu Showcase with Real Handlers
+           ======================================================================= -->
+      <section class="menu-section" id="menu">
+        <div class="container">
+          <div class="section-header">
+            <span class="section-kicker">Signature Brews</span>
+            <h2 class="section-title">Popular On The Tap</h2>
+            <p class="section-description">
+              Handcrafted espresso drinks, slow-drip cold brews, and single-origin pour-overs.
+            </p>
+          </div>
+
+          <!-- Category Filter Buttons -->
+          <div class="menu-filters">
+            <button type="button" class="filter-btn active" data-filter="all">All Items</button>
+            <button type="button" class="filter-btn" data-filter="espresso">Espresso & Milk</button>
+            <button type="button" class="filter-btn" data-filter="cold">Cold Brews</button>
+            <button type="button" class="filter-btn" data-filter="beans">Bean Bags</button>
+          </div>
+
+          <div class="menu-grid" id="menuGrid">
+            <div class="menu-item-card" data-category="espresso">
+              <div class="menu-item-top">
+                <h3 class="menu-item-name">Nile Signature Roast</h3>
+                <span class="menu-item-price">$4.75</span>
+              </div>
+              <p class="menu-item-desc">
+                Ethiopian heirloom beans with notes of wild blueberry, bergamot, and sweet honeycomb.
+              </p>
+              <button
+                type="button"
+                class="menu-item-btn quick-order-trigger"
+                data-item="Nile Signature Roast"
+                data-price="4.75"
+              >
+                <span>Order Now</span>
+              </button>
+            </div>
+
+            <div class="menu-item-card" data-category="espresso">
+              <div class="menu-item-top">
+                <h3 class="menu-item-name">Velvet Oat Flat White</h3>
+                <span class="menu-item-price">$5.25</span>
+              </div>
+              <p class="menu-item-desc">
+                Double ristretto pulled over steamed micro-foamed organic oat milk. Silky and balanced.
+              </p>
+              <button
+                type="button"
+                class="menu-item-btn quick-order-trigger"
+                data-item="Velvet Oat Flat White"
+                data-price="5.25"
+              >
+                <span>Order Now</span>
+              </button>
+            </div>
+
+            <div class="menu-item-card" data-category="cold">
+              <div class="menu-item-top">
+                <h3 class="menu-item-name">Nitro Cascara Cold Brew</h3>
+                <span class="menu-item-price">$5.50</span>
+              </div>
+              <p class="menu-item-desc">
+                20-hour steeped cold brew infused with nitrogen and dried coffee cherry fruit essence.
+              </p>
+              <button
+                type="button"
+                class="menu-item-btn quick-order-trigger"
+                data-item="Nitro Cascara Cold Brew"
+                data-price="5.50"
+              >
+                <span>Order Now</span>
+              </button>
+            </div>
+
+            <div class="menu-item-card" data-category="espresso">
+              <div class="menu-item-top">
+                <h3 class="menu-item-name">Cardamom Spiced Latte</h3>
+                <span class="menu-item-price">$5.75</span>
+              </div>
+              <p class="menu-item-desc">
+                Freshly crushed green cardamom pods infused into dark roast espresso and velvety foam.
+              </p>
+              <button
+                type="button"
+                class="menu-item-btn quick-order-trigger"
+                data-item="Cardamom Spiced Latte"
+                data-price="5.75"
+              >
+                <span>Order Now</span>
+              </button>
+            </div>
+
+            <div class="menu-item-card" data-category="cold">
+              <div class="menu-item-top">
+                <h3 class="menu-item-name">Honey Kyoto Drip</h3>
+                <span class="menu-item-price">$5.95</span>
+              </div>
+              <p class="menu-item-desc">
+                Slow Dutch-drip extraction over ice drop-by-drop with hints of raw wildflower honey.
+              </p>
+              <button
+                type="button"
+                class="menu-item-btn quick-order-trigger"
+                data-item="Honey Kyoto Drip"
+                data-price="5.95"
+              >
+                <span>Order Now</span>
+              </button>
+            </div>
+
+            <div class="menu-item-card" data-category="beans">
+              <div class="menu-item-top">
+                <h3 class="menu-item-name">Blue Nile Whole Beans (12oz)</h3>
+                <span class="menu-item-price">$18.50</span>
+              </div>
+              <p class="menu-item-desc">
+                Whole bean bag roasted within 48 hours. Notes of dark chocolate, jasmine, and citrus.
+              </p>
+              <button
+                type="button"
+                class="menu-item-btn quick-order-trigger"
+                data-item="Blue Nile Whole Beans (12oz)"
+                data-price="18.50"
+              >
+                <span>Order Now</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =======================================================================
+           One Testimonial
+           ======================================================================= -->
+      <section class="testimonial-section" aria-label="Customer Testimonial">
+        <div class="container">
+          <div class="testimonial-container">
+            <svg
+              class="testimonial-quote-icon"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              aria-hidden="true"
+            >
+              <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"></path>
+            </svg>
+
+            <blockquote class="testimonial-quote-text">
+              "Nile Coffee is my non-negotiable daily ritual before early morning hospital shifts.
+              The cold brew is remarkably smooth with zero bitterness, and whenever our ward orders
+              delivery, it arrives piping hot and perfectly sealed in under fifteen minutes."
+            </blockquote>
+
+            <div class="testimonial-author-block">
+              <div class="testimonial-avatar" aria-hidden="true">AC</div>
+              <div class="testimonial-author-info">
+                <span class="testimonial-author-name">Dr. Amara Chen</span>
+                <span class="testimonial-author-meta">
+                  Senior Resident Physician, St. Jude Medical Center · Daily Subscriber
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =======================================================================
+           About Section (Target for Nav)
+           ======================================================================= -->
+      <section class="about-section" id="about">
+        <div class="container">
+          <div class="about-grid">
+            <div class="about-content">
+              <span class="section-kicker">Rooted in Origin</span>
+              <h2>Born Along the Nile, Roasted for Your Morning</h2>
+              <p>
+                Founded in 2021, Nile Coffee began with a simple philosophy: honor the
+                birthplace of coffee by partnering directly with smallholder farming
+                cooperatives along the Blue and White Nile river basins.
+              </p>
+              <p>
+                We pay 45% above Fair Trade baselines, guaranteeing regenerative farming
+                and empowering multi-generational coffee families.
+              </p>
+              <div class="about-highlights">
+                <div class="about-stat-box">
+                  <div class="about-stat-num">18</div>
+                  <div class="about-stat-label">Cooperative Farm Partners</div>
+                </div>
+                <div class="about-stat-box">
+                  <div class="about-stat-num">0%</div>
+                  <div class="about-stat-label">Synthetic Fertilizers Used</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="about-card-visual">
+              <div
+                style="font-family: var(--font-serif); font-size: 1.5rem; font-weight: 700; color: var(--color-espresso); margin-bottom: 12px;"
+              >
+                "From Seed to Cup"
+              </div>
+              <p style="color: var(--color-text-muted); font-size: 0.95rem; margin-bottom: 24px;">
+                Every bag of beans features an origin tracking code revealing harvest date,
+                elevation lot, and roaster profile notes.
+              </p>
+              <button
+                type="button"
+                class="btn-primary"
+                id="aboutOrderBtn"
+                style="margin: 0 auto"
+              >
+                <span>Order Fresh Roasted Beans</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =======================================================================
+           Contact Section with Real Working Inquiries & Newsletter
+           ======================================================================= -->
+      <section class="contact-section" id="contact">
+        <div class="container">
+          <div class="section-header" style="margin-bottom: 36px;">
+            <span class="section-kicker">Find Us & Connect</span>
+            <h2 class="section-title">Visit Our Coffee Bar</h2>
+            <p class="section-description">
+              Stop by for a warm espresso flight or send us a message. Our baristas reply promptly.
+            </p>
+          </div>
+
+          <div class="contact-grid">
+            <!-- Contact Info Details -->
+            <div class="contact-info-card">
+              <div class="contact-item">
+                <div class="contact-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                    <circle cx="12" cy="10" r="3"></circle>
+                  </svg>
+                </div>
+                <div>
+                  <div class="contact-label">Location</div>
+                  <div class="contact-val">42 Nile Basin Way, Downtown Arts District</div>
+                </div>
+              </div>
+
+              <div class="contact-item">
+                <div class="contact-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <polyline points="12 6 12 12 16 14"></polyline>
+                  </svg>
+                </div>
+                <div>
+                  <div class="contact-label">Hours</div>
+                  <div class="contact-val">Mon–Fri: 6:30 AM – 7:30 PM · Sat–Sun: 7:00 AM – 8:00 PM</div>
+                </div>
+              </div>
+
+              <div class="contact-item">
+                <div class="contact-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                  </svg>
+                </div>
+                <div>
+                  <div class="contact-label">Direct Line</div>
+                  <div class="contact-val">+1 (555) 789-NILE (6453)</div>
+                </div>
+              </div>
+
+              <!-- Working Newsletter Club with Real Promo Code -->
+              <div class="newsletter-box">
+                <div class="contact-label">Nile Roaster Club</div>
+                <p style="font-size: 0.88rem; color: var(--color-text-muted); margin-top: 4px;">
+                  Sign up for private cupping invites, seasonal harvest releases, and get an instant 15% discount code!
+                </p>
+                <form id="newsletterForm" class="newsletter-input-group">
+                  <input
+                    type="email"
+                    id="newsletterEmail"
+                    class="input-text"
+                    placeholder="name@example.com"
+                    required
+                    aria-label="Email address for coffee newsletter"
+                  />
+                  <button type="submit" class="btn-primary" style="padding: 10px 18px;">
+                    Join Club
+                  </button>
+                </form>
+
+                <div class="discount-code-tag" id="promoCodeTag">
+                  <span>Code: <strong style="letter-spacing: 0.05em">NILE15</strong> (15% off applied!)</span>
+                  <button type="button" id="copyPromoBtn" style="font-size: 0.78rem; text-decoration: underline; color: var(--color-nile-deep); font-weight: 700;">
+                    Copy Code
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Real Working Contact Form -->
+            <div class="contact-form-card">
+              <h3 style="font-family: var(--font-serif); font-size: 1.35rem; margin-bottom: 6px; color: var(--color-espresso);">
+                Send a Message
+              </h3>
+              <p style="font-size: 0.88rem; color: var(--color-text-muted); margin-bottom: 20px;">
+                Have questions about wholesale, catering, or single-origin sourcing?
+              </p>
+
+              <form id="contactForm">
+                <div class="form-grid-2" style="margin-bottom: 14px;">
+                  <div>
+                    <label class="form-label" for="contactName">Your Name</label>
+                    <input type="text" id="contactName" class="input-text" placeholder="John Doe" required />
+                  </div>
+                  <div>
+                    <label class="form-label" for="contactEmail">Email Address</label>
+                    <input type="email" id="contactEmail" class="input-text" placeholder="john@example.com" required />
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="contactTopic">Inquiry Topic</label>
+                  <select id="contactTopic" class="select-input">
+                    <option value="General Inquiry">General Question / Feedback</option>
+                    <option value="Events & Catering">Event Catering & Espresso Cart</option>
+                    <option value="Wholesale Beans">Wholesale Coffee Beans</option>
+                    <option value="Career">Join Barista Team</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="contactMessage">Message</label>
+                  <textarea id="contactMessage" class="textarea-input" placeholder="How can we help your coffee journey today?" required></textarea>
+                </div>
+
+                <button type="submit" class="btn-primary" style="width: 100%; padding: 13px;">
+                  <span>Send Message</span>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="22" y1="2" x2="11" y2="13"></line>
+                    <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                  </svg>
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- =======================================================================
+         Footer with Copyright & Working Social Media Links
+         (Instagram, Telegram, X/Twitter, Facebook, YouTube)
+         ======================================================================= -->
+    <footer class="site-footer">
+      <div class="container">
+        <div class="footer-top">
+          <!-- Brand Column -->
+          <div class="footer-brand">
+            <span class="brand-icon" style="background-color: #2a523e; color: #ffffff;" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M18 8h1a4 4 0 0 1 0 8h-1"></path>
+                <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path>
+                <line x1="6" y1="1" x2="6" y2="4"></line>
+                <line x1="10" y1="1" x2="10" y2="4"></line>
+                <line x1="14" y1="1" x2="14" y2="4"></line>
+              </svg>
+            </span>
+            <span>Nile Coffee</span>
+          </div>
+
+          <!-- Navigation Links -->
+          <ul class="footer-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#menu">Menu</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+
+          <!-- Social Media Icons Strip: Instagram, Telegram, X, Facebook, YouTube -->
+          <div class="footer-social-wrapper">
+            <span class="footer-social-label">Follow Our Roastery</span>
+            <div class="social-icons-strip">
+              <!-- Instagram -->
+              <a
+                href="https://instagram.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="social-link"
+                aria-label="Follow Nile Coffee on Instagram"
+                title="Instagram"
+              >
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"></path>
+                </svg>
+              </a>
+
+              <!-- Telegram -->
+              <a
+                href="https://t.me"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="social-link"
+                aria-label="Join Nile Coffee on Telegram"
+                title="Telegram"
+              >
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"></path>
+                </svg>
+              </a>
+
+              <!-- X (Twitter) -->
+              <a
+                href="https://x.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="social-link"
+                aria-label="Follow Nile Coffee on X"
+                title="X"
+              >
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path>
+                </svg>
+              </a>
+
+              <!-- Facebook -->
+              <a
+                href="https://facebook.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="social-link"
+                aria-label="Visit Nile Coffee on Facebook"
+                title="Facebook"
+              >
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"></path>
+                </svg>
+              </a>
+
+              <!-- YouTube -->
+              <a
+                href="https://youtube.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="social-link"
+                aria-label="Watch Nile Coffee Roasting Sessions on YouTube"
+                title="YouTube"
+              >
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"></path>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <p>© 2026 Nile Coffee Roasters. All rights reserved.</p>
+          <p>Hand-roasted with love · Ethical single-origin beans</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- =======================================================================
+         Interactive Order Modal Dialog
+         ======================================================================= -->
+    <div
+      class="modal-backdrop"
+      id="orderModalBackdrop"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="modalHeading"
+    >
+      <div class="order-modal">
+        <button
+          type="button"
+          class="modal-close-btn"
+          id="modalCloseBtn"
+          aria-label="Close order dialog"
+        >
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+
+        <h3 class="modal-title" id="modalHeading">Order Nile Coffee</h3>
+        <p class="modal-subtitle">Freshly extracted and dispatched immediately.</p>
+
+        <form id="orderForm">
+          <div class="form-group">
+            <label class="form-label" for="coffeeSelect">Choose Your Roast</label>
+            <select class="select-input" id="coffeeSelect">
+              <option value="4.75" data-name="Nile Signature Roast">Nile Signature Roast ($4.75)</option>
+              <option value="5.25" data-name="Velvet Oat Flat White">Velvet Oat Flat White ($5.25)</option>
+              <option value="5.50" data-name="Nitro Cascara Cold Brew">Nitro Cascara Cold Brew ($5.50)</option>
+              <option value="5.75" data-name="Cardamom Spiced Latte">Cardamom Spiced Latte ($5.75)</option>
+              <option value="5.95" data-name="Honey Kyoto Drip">Honey Kyoto Drip ($5.95)</option>
+              <option value="18.50" data-name="Blue Nile Whole Beans (12oz)">Blue Nile Whole Beans (12oz) ($18.50)</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Cup Size / Weight</label>
+            <div class="size-selector">
+              <button type="button" class="size-option-btn" data-size="Regular (12oz)" data-upcharge="0">
+                12 oz
+              </button>
+              <button type="button" class="size-option-btn selected" data-size="Large (16oz)" data-upcharge="0.75">
+                16 oz (+$0.75)
+              </button>
+              <button type="button" class="size-option-btn" data-size="Grand (20oz)" data-upcharge="1.50">
+                20 oz (+$1.50)
+              </button>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="milkSelect">Milk Preference</label>
+            <select class="select-input" id="milkSelect">
+              <option value="Organic Oat Milk">Organic Oat Milk (House Choice)</option>
+              <option value="Whole Dairy Milk">Whole Dairy Milk</option>
+              <option value="Almond Milk">Almond Milk</option>
+              <option value="Black / No Milk">Black / No Milk</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Custom Add-Ons</label>
+            <label class="checkbox-addon-label">
+              <input type="checkbox" id="addonShot" value="0.90" />
+              <span>Extra Double-Shot Espresso (+ $0.90)</span>
+            </label>
+            <label class="checkbox-addon-label">
+              <input type="checkbox" id="addonSyrup" value="0.65" />
+              <span>Wildflower Raw Honey / Vanilla (+ $0.65)</span>
+            </label>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="deliveryAddress">Delivery Address or Table #</label>
+            <input
+              type="text"
+              id="deliveryAddress"
+              class="input-text"
+              placeholder="e.g. 742 Evergreen Terrace or Table #4"
+              required
+            />
+          </div>
+
+          <div class="order-summary-box">
+            <div class="summary-line">
+              <span>Item Subtotal:</span>
+              <span id="summarySubtotal">$5.50</span>
+            </div>
+            <div class="summary-line">
+              <span>Fast Thermal Dispatch:</span>
+              <span>$1.50</span>
+            </div>
+            <div class="summary-line" id="discountLine" style="display: none; color: var(--color-nile-green); font-weight: 600;">
+              <span>Club Discount (15%):</span>
+              <span id="discountAmount">-$0.82</span>
+            </div>
+            <div class="summary-line total">
+              <span>Estimated Total:</span>
+              <span class="price" id="orderTotalPrice">$7.00</span>
+            </div>
+          </div>
+
+          <button type="submit" class="btn-primary" style="width: 100%; padding: 14px;">
+            <span>Place Order & Dispatch</span>
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- =======================================================================
+         Slide-in Cart & Order Tracker Drawer
+         ======================================================================= -->
+    <aside
+      class="cart-drawer"
+      id="cartDrawer"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Order Cart and Tracker"
+    >
+      <div class="cart-drawer-header">
+        <h3>Your Orders & Cart</h3>
+        <button
+          type="button"
+          class="modal-close-btn"
+          id="cartDrawerCloseBtn"
+          aria-label="Close cart drawer"
+          style="position: static;"
+        >
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+
+      <div class="cart-drawer-content" id="cartDrawerContent">
+        <!-- Live Active Order Status Tracker -->
+        <div id="liveOrderTrackerContainer"></div>
+
+        <!-- Placed Order History List -->
+        <div style="margin-top: 20px;">
+          <h4 style="font-size: 0.95rem; font-weight: 700; color: var(--color-espresso); margin-bottom: 10px;">
+            Recent Orders
+          </h4>
+          <div id="orderHistoryList">
+            <p class="cart-empty-state">No orders yet. Place your first roast to track it live!</p>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Notification Toast -->
+    <div class="toast" id="feedbackToast" role="status" aria-live="polite">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#68d391" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+        <polyline points="22 4 12 14.01 9 11.01"></polyline>
+      </svg>
+      <span id="toastMessage">Order confirmed! Brewing now.</span>
+    </div>
+
+    <!-- =======================================================================
+         Embedded JavaScript: All Logic In One Single File
+         ======================================================================= -->
+    <script>
+      (function () {
+        "use strict";
+
+        // ===================================================================
+        // State Management & LocalStorage Persistence
+        // ===================================================================
+        const STORAGE_KEY_ORDERS = "nile_coffee_orders";
+        const STORAGE_KEY_SUBSCRIBERS = "nile_coffee_subscribers";
+        const STORAGE_KEY_MESSAGES = "nile_coffee_messages";
+
+        function loadOrders() {
+          try {
+            return JSON.parse(localStorage.getItem(STORAGE_KEY_ORDERS)) || [];
+          } catch (e) {
+            return [];
+          }
+        }
+
+        function saveOrders(orders) {
+          try {
+            localStorage.setItem(STORAGE_KEY_ORDERS, JSON.stringify(orders));
+          } catch (e) {
+            console.error(e);
+          }
+        }
+
+        let currentOrders = loadOrders();
+        let userHasPromo = false;
+        let currentSizeUpcharge = 0.75; // 16oz default
+
+        // DOM elements
+        const hamburgerBtn = document.getElementById("hamburgerBtn");
+        const mobileNavDrawer = document.getElementById("mobileNavDrawer");
+        const mobileLinks = document.querySelectorAll(".mobile-link");
+        const siteHeader = document.getElementById("siteHeader");
+
+        const orderModalBackdrop = document.getElementById("orderModalBackdrop");
+        const modalCloseBtn = document.getElementById("modalCloseBtn");
+        const orderForm = document.getElementById("orderForm");
+        const coffeeSelect = document.getElementById("coffeeSelect");
+        const sizeOptionBtns = document.querySelectorAll(".size-option-btn");
+        const addonShot = document.getElementById("addonShot");
+        const addonSyrup = document.getElementById("addonSyrup");
+        const summarySubtotal = document.getElementById("summarySubtotal");
+        const discountLine = document.getElementById("discountLine");
+        const discountAmount = document.getElementById("discountAmount");
+        const orderTotalPrice = document.getElementById("orderTotalPrice");
+
+        const cartDrawer = document.getElementById("cartDrawer");
+        const headerCartBtn = document.getElementById("headerCartBtn");
+        const mobileCartBtn = document.getElementById("mobileCartBtn");
+        const cartDrawerCloseBtn = document.getElementById("cartDrawerCloseBtn");
+        const cartBadgeCount = document.getElementById("cartBadgeCount");
+        const orderHistoryList = document.getElementById("orderHistoryList");
+        const liveOrderTrackerContainer = document.getElementById("liveOrderTrackerContainer");
+
+        const feedbackToast = document.getElementById("feedbackToast");
+        const toastMessage = document.getElementById("toastMessage");
+
+        const newsletterForm = document.getElementById("newsletterForm");
+        const newsletterEmail = document.getElementById("newsletterEmail");
+        const promoCodeTag = document.getElementById("promoCodeTag");
+        const copyPromoBtn = document.getElementById("copyPromoBtn");
+
+        const contactForm = document.getElementById("contactForm");
+
+        // 1. Mobile Menu Toggle
+        function toggleMobileMenu() {
+          const isOpen = hamburgerBtn.classList.toggle("is-active");
+          mobileNavDrawer.classList.toggle("is-open", isOpen);
+          hamburgerBtn.setAttribute("aria-expanded", String(isOpen));
+          mobileNavDrawer.setAttribute("aria-hidden", String(!isOpen));
+        }
+
+        function closeMobileMenu() {
+          hamburgerBtn.classList.remove("is-active");
+          mobileNavDrawer.classList.remove("is-open");
+          hamburgerBtn.setAttribute("aria-expanded", "false");
+          mobileNavDrawer.setAttribute("aria-hidden", "true");
+        }
+
+        if (hamburgerBtn) {
+          hamburgerBtn.addEventListener("click", toggleMobileMenu);
+        }
+
+        mobileLinks.forEach(function (link) {
+          link.addEventListener("click", closeMobileMenu);
+        });
+
+        // 2. Sticky Header Elevation
+        window.addEventListener("scroll", function () {
+          if (window.scrollY > 20) {
+            siteHeader.classList.add("scrolled");
+          } else {
+            siteHeader.classList.remove("scrolled");
+          }
+        });
+
+        // 3. Category Filter
+        const filterBtns = document.querySelectorAll(".filter-btn");
+        const menuCards = document.querySelectorAll(".menu-item-card");
+
+        filterBtns.forEach(function (btn) {
+          btn.addEventListener("click", function () {
+            filterBtns.forEach(function (b) {
+              b.classList.remove("active");
+            });
+            btn.classList.add("active");
+            const filter = btn.getAttribute("data-filter");
+
+            menuCards.forEach(function (card) {
+              if (filter === "all" || card.getAttribute("data-category") === filter) {
+                card.style.display = "flex";
+              } else {
+                card.style.display = "none";
+              }
+            });
+          });
+        });
+
+        // 4. Cart & Drawer Open/Close
+        function openCartDrawer() {
+          renderCartDrawer();
+          cartDrawer.classList.add("is-open");
+          closeMobileMenu();
+        }
+
+        function closeCartDrawer() {
+          cartDrawer.classList.remove("is-open");
+        }
+
+        if (headerCartBtn) headerCartBtn.addEventListener("click", openCartDrawer);
+        if (mobileCartBtn) mobileCartBtn.addEventListener("click", openCartDrawer);
+        if (cartDrawerCloseBtn) cartDrawerCloseBtn.addEventListener("click", closeCartDrawer);
+
+        // 5. Order Calculation & Modal
+        function calculateOrderTotal() {
+          const basePrice = parseFloat(coffeeSelect.value) || 4.75;
+          let subtotal = basePrice + currentSizeUpcharge;
+          if (addonShot && addonShot.checked) subtotal += parseFloat(addonShot.value);
+          if (addonSyrup && addonSyrup.checked) subtotal += parseFloat(addonSyrup.value);
+
+          summarySubtotal.textContent = "$" + subtotal.toFixed(2);
+
+          let discount = 0;
+          if (userHasPromo) {
+            discount = subtotal * 0.15;
+            discountLine.style.display = "flex";
+            discountAmount.textContent = "-$" + discount.toFixed(2);
+          } else {
+            discountLine.style.display = "none";
+          }
+
+          const deliveryFee = 1.50;
+          const total = Math.max(0, subtotal + deliveryFee - discount);
+          orderTotalPrice.textContent = "$" + total.toFixed(2);
+        }
+
+        function openOrderModal(itemName) {
+          if (itemName) {
+            for (let i = 0; i < coffeeSelect.options.length; i++) {
+              if (coffeeSelect.options[i].dataset.name === itemName) {
+                coffeeSelect.selectedIndex = i;
+                break;
+              }
+            }
+          }
+          calculateOrderTotal();
+          orderModalBackdrop.classList.add("is-open");
+          closeMobileMenu();
+          document.body.style.overflow = "hidden";
+        }
+
+        function closeOrderModal() {
+          orderModalBackdrop.classList.remove("is-open");
+          document.body.style.overflow = "";
+        }
+
+        // Attach triggers for Order Now
+        const orderTriggers = [
+          document.getElementById("headerOrderBtn"),
+          document.getElementById("mobileOrderBtn"),
+          document.getElementById("heroOrderBtn"),
+          document.getElementById("aboutOrderBtn")
+        ];
+
+        orderTriggers.forEach(function (btn) {
+          if (btn) {
+            btn.addEventListener("click", function () {
+              openOrderModal();
+            });
+          }
+        });
+
+        document.querySelectorAll(".quick-order-trigger").forEach(function (btn) {
+          btn.addEventListener("click", function () {
+            const item = btn.getAttribute("data-item");
+            openOrderModal(item);
+          });
+        });
+
+        if (modalCloseBtn) {
+          modalCloseBtn.addEventListener("click", closeOrderModal);
+        }
+
+        orderModalBackdrop.addEventListener("click", function (e) {
+          if (e.target === orderModalBackdrop) {
+            closeOrderModal();
+          }
+        });
+
+        sizeOptionBtns.forEach(function (btn) {
+          btn.addEventListener("click", function () {
+            sizeOptionBtns.forEach(function (b) {
+              b.classList.remove("selected");
+            });
+            btn.classList.add("selected");
+            currentSizeUpcharge = parseFloat(btn.dataset.upcharge) || 0;
+            calculateOrderTotal();
+          });
+        });
+
+        if (coffeeSelect) coffeeSelect.addEventListener("change", calculateOrderTotal);
+        if (addonShot) addonShot.addEventListener("change", calculateOrderTotal);
+        if (addonSyrup) addonSyrup.addEventListener("change", calculateOrderTotal);
+
+        // Toast Feedback
+        function showToast(msg) {
+          toastMessage.textContent = msg;
+          feedbackToast.classList.add("is-visible");
+          setTimeout(function () {
+            feedbackToast.classList.remove("is-visible");
+          }, 3800);
+        }
+
+        // Render Cart & Orders
+        function updateCartBadge() {
+          const count = currentOrders.length;
+          cartBadgeCount.textContent = String(count);
+        }
+
+        function renderCartDrawer() {
+          updateCartBadge();
+
+          if (currentOrders.length === 0) {
+            liveOrderTrackerContainer.innerHTML = "";
+            orderHistoryList.innerHTML = `<p class="cart-empty-state">No orders placed yet. Choose a roast from the menu to taste freshly extracted perfection!</p>`;
+            return;
+          }
+
+          // Active newest order tracker
+          const latestOrder = currentOrders[currentOrders.length - 1];
+          const progressPercent = latestOrder.status === "Delivered" ? 100 : latestOrder.status === "Dispatched" ? 75 : latestOrder.status === "Brewing" ? 40 : 15;
+
+          liveOrderTrackerContainer.innerHTML = `
+            <div class="live-tracker-box">
+              <div class="tracker-title-row">
+                <span style="font-weight: 700; font-size: 0.95rem;">Live Order #${latestOrder.id}</span>
+                <span style="font-size: 0.78rem; background: rgba(255,255,255,0.2); padding: 2px 8px; border-radius: 99px;">${latestOrder.status}</span>
+              </div>
+              <div class="tracker-progress-bar">
+                <div class="tracker-progress-fill" style="width: ${progressPercent}%;"></div>
+              </div>
+              <div class="tracker-status-step">
+                ${latestOrder.status === "Delivered" ? "🎉 Delivered hot to your door!" : latestOrder.status === "Dispatched" ? "⚡ Electric courier in transit (" + latestOrder.eta + ")" : "☕ Grinding & extracting espresso..."}
+              </div>
+              <div style="font-size: 0.8rem; opacity: 0.85; margin-top: 6px;">
+                ${latestOrder.item} (${latestOrder.size}) · ${latestOrder.total}
+              </div>
+            </div>
+          `;
+
+          // Order History
+          let historyHtml = "";
+          currentOrders.slice().reverse().forEach(function (order) {
+            historyHtml += `
+              <div class="cart-item">
+                <div>
+                  <div class="cart-item-name">${order.item}</div>
+                  <div class="cart-item-details">${order.size} · ${order.milk} · ${order.time}</div>
+                  <div style="font-weight: 700; color: var(--color-nile-green); font-size: 0.88rem; margin-top: 2px;">${order.total}</div>
+                </div>
+                <button type="button" class="cart-item-remove" data-id="${order.id}">Remove</button>
+              </div>
+            `;
+          });
+
+          orderHistoryList.innerHTML = historyHtml;
+
+          // Wire remove buttons
+          orderHistoryList.querySelectorAll(".cart-item-remove").forEach(function (btn) {
+            btn.addEventListener("click", function () {
+              const id = btn.getAttribute("data-id");
+              currentOrders = currentOrders.filter(function (o) {
+                return o.id !== id;
+              });
+              saveOrders(currentOrders);
+              renderCartDrawer();
+              showToast("Order removed from history.");
+            });
+          });
+        }
+
+        // Form Submission (Real Working Order)
+        if (orderForm) {
+          orderForm.addEventListener("submit", function (e) {
+            e.preventDefault();
+            const selectedOption = coffeeSelect.options[coffeeSelect.selectedIndex];
+            const coffeeName = selectedOption.dataset.name || "Nile Signature Roast";
+            const address = document.getElementById("deliveryAddress").value.trim();
+            const milk = document.getElementById("milkSelect").value;
+            const selectedSizeBtn = document.querySelector(".size-option-btn.selected");
+            const sizeName = selectedSizeBtn ? selectedSizeBtn.dataset.size : "Large (16oz)";
+            const finalTotal = orderTotalPrice.textContent;
+
+            const orderId = "NC-" + Math.floor(1000 + Math.random() * 9000);
+            const now = new Date();
+            const timeString = now.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
+
+            const newOrder = {
+              id: orderId,
+              item: coffeeName,
+              size: sizeName,
+              milk: milk,
+              address: address,
+              total: finalTotal,
+              time: timeString,
+              status: "Brewing",
+              eta: "11 mins"
+            };
+
+            currentOrders.push(newOrder);
+            saveOrders(currentOrders);
+            updateCartBadge();
+
+            closeOrderModal();
+            showToast("Order " + orderId + " placed! Courier dispatched in 12 min.");
+            orderForm.reset();
+
+            // Progress simulation
+            setTimeout(function () {
+              newOrder.status = "Dispatched";
+              saveOrders(currentOrders);
+              renderCartDrawer();
+            }, 6000);
+
+            setTimeout(function () {
+              newOrder.status = "Delivered";
+              saveOrders(currentOrders);
+              renderCartDrawer();
+            }, 18000);
+          });
+        }
+
+        // 6. Working Newsletter Club & Promo Code
+        if (newsletterForm) {
+          newsletterForm.addEventListener("submit", function (e) {
+            e.preventDefault();
+            const email = newsletterEmail.value.trim();
+            if (!email) return;
+
+            let subscribers = [];
+            try {
+              subscribers = JSON.parse(localStorage.getItem(STORAGE_KEY_SUBSCRIBERS)) || [];
+            } catch (err) {}
+
+            if (!subscribers.includes(email)) {
+              subscribers.push(email);
+              localStorage.setItem(STORAGE_KEY_SUBSCRIBERS, JSON.stringify(subscribers));
+            }
+
+            userHasPromo = true;
+            promoCodeTag.classList.add("active");
+            calculateOrderTotal();
+            showToast("Welcome! Promo code NILE15 applied (15% off).");
+            newsletterEmail.value = "";
+          });
+        }
+
+        if (copyPromoBtn) {
+          copyPromoBtn.addEventListener("click", function () {
+            if (navigator.clipboard) {
+              navigator.clipboard.writeText("NILE15");
+              showToast("Code NILE15 copied to clipboard!");
+            } else {
+              showToast("Promo Code: NILE15");
+            }
+          });
+        }
+
+        // 7. Working Contact Inquiry Form
+        if (contactForm) {
+          contactForm.addEventListener("submit", function (e) {
+            e.preventDefault();
+            const name = document.getElementById("contactName").value.trim();
+            const email = document.getElementById("contactEmail").value.trim();
+            const topic = document.getElementById("contactTopic").value;
+            const msg = document.getElementById("contactMessage").value.trim();
+
+            const inquiry = {
+              name: name,
+              email: email,
+              topic: topic,
+              message: msg,
+              date: new Date().toISOString()
+            };
+
+            let inquiries = [];
+            try {
+              inquiries = JSON.parse(localStorage.getItem(STORAGE_KEY_MESSAGES)) || [];
+            } catch (err) {}
+            inquiries.push(inquiry);
+            localStorage.setItem(STORAGE_KEY_MESSAGES, JSON.stringify(inquiries));
+
+            showToast("Thank you, " + name + "! Message sent. We'll reply to " + email);
+            contactForm.reset();
+          });
+        }
+
+        // 8. Escape Key Handling
+        document.addEventListener("keydown", function (e) {
+          if (e.key === "Escape") {
+            closeOrderModal();
+            closeCartDrawer();
+            closeMobileMenu();
+          }
+        });
+
+        // Initialize Cart Display
+        updateCartBadge();
+      })();
+    </script>
+  </body>
+</html>
